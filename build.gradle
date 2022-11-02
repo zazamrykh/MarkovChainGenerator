@@ -1,0 +1,41 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+apply plugin: 'maven-publish'
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.zazamrykh'
+            artifactId = 'MarkovChainGenerator'
+            version = "1"
+            from components.kotlin
+
+            pom {
+                name = 'Markov Generator'
+                description = 'Generator of new list of elements using initial list and using Markov Chains'
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username = "$usr"
+                password = "$pwd"
+            }
+
+            url = "https://maven.pkg.jetbrains.space/mycompany/p/projectkey/my-maven-repo"
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+}
